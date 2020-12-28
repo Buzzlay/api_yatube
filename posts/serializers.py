@@ -4,7 +4,7 @@ from .models import Post, Comment
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.CharField(
+    author = serializers.StringRelatedField(
         source='author.username',
         read_only=True
     )
@@ -16,11 +16,11 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
-    author = serializers.CharField(
+    author = serializers.StringRelatedField(
         source='author.username',
         read_only=True
     )
-    post = serializers.IntegerField(
+    post = serializers.PrimaryKeyRelatedField(
         source='post.id',
         read_only=True
     )
